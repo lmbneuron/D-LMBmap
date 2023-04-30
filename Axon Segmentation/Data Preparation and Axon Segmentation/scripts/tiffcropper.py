@@ -61,8 +61,10 @@ print(len(files))
 
 def gauss_cal(img):
     im = img.astype(np.float64)
-    #blurred = cv2.GaussianBlur(im, (3,3), 10)
-    blurred = cv2.blur(im, (3,3))
+    blurred = cv2.GaussianBlur(im, (3,3), 10)
+    #blurred = cv2.blur(im, (3,3))
+    
+    # gaussian difference
     im = im - blurred
     im[im < 0] = 0
     return im.astype(np.uint16)

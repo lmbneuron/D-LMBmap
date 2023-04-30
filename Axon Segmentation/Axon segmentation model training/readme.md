@@ -60,8 +60,8 @@ the skeletonized annotations, the automatically annotated masks and the axon cub
 　　 　 　└── artifacts
 　　 　　　　　└──volume-200.tiff
 ```
-We propose two data augmentation methods, histogram matching and cutmix, to augment training data. 
-Change the parameters of function `histogram_match_data` in `create_data.py` to choose using histogram matching/cutmix or 
+We propose three data augmentation methods, histogram matching, cutmix, and local contrast enhancement to augment training data. 
+Change the parameters of function `histogram_match_data` in `create_data.py` to choose using histogram matching/cutmix/contrast enhancement or 
 not. If you want to use histogram matching, it is better to set both **match_flag** and **join_flag** True so that both 
 original cubes and matched cubes can be used for training.
 ```

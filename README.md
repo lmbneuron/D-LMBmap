@@ -3,6 +3,10 @@
 ![logo](./D-LMBmap.png)
 ## Overview
 D-LMBmap, an end-to-end package providing an integrated workflow containing three modules based on novel deep-learning algorithms for whole-brain connectivity mapping: axon segmentation, brain region segmentation and whole-brain registration. D-LMBmap is the first method that does not require manual annotation for axon segmentation, and achieves quantitative analysis of whole-brain projectome in a single workflow with superior accuracy for multiple cell types in all of the modalities tested.
+
+Our pre-trained models and test dataset will soon be accessible [here](https://drive.google.com/drive/folders/1wQ-gvxpLPXUk6D-2jdbttq_lOw1nzBzz?usp=share_link).
+
+
 ![pipeline](./pipeline.png)
 ## D-LMBmap software
 [D-LMBmap v1.0.0](https://github.com/lmbneuron/D-LMBmap/releases/tag/v1.0.0)

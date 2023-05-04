@@ -1,21 +1,14 @@
 # D-LMBmap software
-## Run
-you can use our software by run the python code or download our software from github->release
-```shell
-# run the python code
-conda create -n D-LMBmap
-pip install requirements.txt
-python main.py
-```
+
 ## Documentation
-Our software consists of two interfaces, one is main surface and the other one is registration surface.
+Our software consists of two interfaces, one is main inteface and the other one is registration inteface.
 
 
-### Main surface
+### Main inteface
 
-#### 1. The whole surface
+#### 1. The whole inteface
 
-The whole surface is shown below. The data used in Register, Region segment, Style transfer, Soma detect needs to be in the same direction as the following figure. You can use actions in the Action menu to adjust the direction and size.
+The whole inteface is shown below. The data used in Register, Region segment, Style transfer, Soma detect needs to be in the same direction as the following figure. You can use actions in the Action menu to adjust the direction and size.
 ![img.png](img/img.png)
 
 
@@ -48,7 +41,7 @@ including SaveTransform, SaveImage and Save as Video.
 
   
 
-#### 4. Operation in the surface
+#### 4. Operation in the inteface
 
 * For the read file, the entire image area will be surrounded by a red frame, and the outside of the red frame will be out of bounds. At the same time, the coordinate axis will be set in each interface, which is convenient for operations in 7.
 
@@ -80,15 +73,15 @@ including SaveTransform, SaveImage and Save as Video.
 
 
 #### 6. Style transfer
-  For the style transfer function, it will be a bit slower when it is used for the first time because it needs to download the model from google drive. It can be performed on the main interface or on the registration surface.
+  For the style transfer function, it will be a bit slower when it is used for the first time because it needs to download the model from google drive. It can be performed on the main interface or on the registration inteface.
 
-Style transfer on the main surface.
+Style transfer on the main inteface.
 * First you need to import a Main Image。 
 * Click Segment->Start style transfer.
 * Select the modal, such as Adipo-Clear, iDISCO, MRI.
 * Click the OK button and start to do the style transfer. The result will replace the current Main Image。
 
-Style transfer on the registration surface.
+Style transfer on the registration inteface.
 * First, import a Main Image when "Moving (raw)" is displayed on the header in the Moving window. 
 * Click Action->Transfer in the menu.
 * Select the modal, such as Adipo-Clear, iDISCO, MRI.
@@ -137,9 +130,9 @@ Click the Axon segment in the main menu after loading the image to be detected i
 * Cube-based: It is required that the image to be detected is a cube cropped from the original image, and the corresponding result can be obtained by clicking directly.
 
 
-### Registration surface
+### Registration inteface
 
-Click the Registration->Register in the main interface and jump to the registration surface.
+Click the Registration->Register in the main interface and jump to the registration inteface.
 
 It will be a bit slower when it is used for the first time because it needs to download the model from google drive.
 
@@ -172,7 +165,7 @@ Click Moving(raw) or Moving(transfer) to upload the original image or the transf
 Click Action->Register and register the Fix image and the Moving image. The result will be shown in the Registration image window.
 
 The following actions can be taken for Moving images in the menu bar. 
-- Moving->File: including import and export. The import action includes Moving->File-> Import-> From File which means import from file and Moving->File-> Import -> From main surface which means obtained by copying the image in the main interfacfe.
+- Moving->File: including import and export. The import action includes Moving->File-> Import-> From File which means import from file and Moving->File-> Import -> From main inteface which means obtained by copying the image in the main interfacfe.
   The usage of the Export is similar with the Import.
 
 #### 3. Fix image
@@ -187,7 +180,7 @@ You can upload it, or you can directly drag it into this location to upload it, 
 
 For the Segmentation obtained in the Registration image (such as the soma mask obtained by soma detection and the axon mask obtained by the axon segmentation), you can click Action->Create heatmap and select the mask image with the corresponding name. A Heatmap image will be generated.
 
-For the combine button on the right side of the surface, you can view the displayed images by splicing them together in order. File->Export Video supports video export.
+For the combine button on the right side of the inteface, you can view the displayed images by splicing them together in order. File->Export Video supports video export.
 
 ![img2.png](img/img11.png)
 

@@ -15,11 +15,11 @@ Our pre-trained models and test dataset are accessible [here](https://drive.goog
 D-LMBmap provides an open-source software with convenient high-level application programming interfaces (APIs) that can be used to build applications and extensions. The GUI provides functionality for the selection and computation of different pre-trained deep models. 
 You can use D-LMBmap software by run the python code or download our software from github->[release](https://github.com/lmbneuron/D-LMBmap/releases).
 
-Please refer to the [tutorial](https://github.com/lmbneuron/D-LMBmap/tree/main/tutorial) before using the software. Our pre-trained models for the software are accessible [here](https://drive.google.com/drive/folders/1wQ-gvxpLPXUk6D-2jdbttq_lOw1nzBzz?usp=share_link).
+Please refer to the [tutorial](https://github.com/lmbneuron/D-LMBmap/tree/main/tutorial) before using the software. Our pre-trained models for the software are accessible [here](https://drive.google.com/drive/folders/1lEg_epSqCMjSUmVAdwwStvobXrEt82gq?usp=share_link).
 
 ## Axon Segmentation
 
-We provide a whole-brain axon segmentation pipeline and model training method, which can be accessed [here]([https://github.com/lmbneuron/D-LMBmap/tree/main/Axon%20Segmentation](https://drive.google.com/drive/folders/1lEg_epSqCMjSUmVAdwwStvobXrEt82gq?usp=share_link).
+We provide a whole-brain axon segmentation pipeline and model training method, which can be accessed [here](https://github.com/lmbneuron/D-LMBmap/tree/main/Axon%20Segmentation).
 
 Because the whole brain segmentation takes a certain amount of time, we will optimize the module and integrate it into the software in the future. At present, some small volumes can be segmented.
 

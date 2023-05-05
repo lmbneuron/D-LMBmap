@@ -1,6 +1,6 @@
 # 🐁 D-LMBmap Whole-brain Axon Segmentation
 ![](https://github.com/lmbneuron/D-LMBmap/blob/main/Axon%20Segmentation/Data%20Preparation%20and%20Axon%20Segmentation/data/pic1.png)
-D-LMBmap Whole-Brain Axon Segmentation Model Training and Whole-Brain Segmentation Library.
+D-LMBmap can achieve automated axon segmentation from small cubes to whole brain.
 
 
 ## Data Preparation and Whole brain Axon Segmentation

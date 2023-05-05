@@ -23,11 +23,11 @@ We provide a whole-brain axon segmentation pipeline and model training method, w
 
 Because the whole brain segmentation takes a certain amount of time, we will optimize the module and integrate it into the software in the future. At present, some small volumes can be segmented.
 
-## Brain Region Segmentation & Brain Style Transfer
+## Brain Style Transfer & Brain Region Segmentation
 
 ![Brain region segmentation and Brain style Transfer](https://github.com/lmbneuron/D-LMBmap/blob/main/Brain%20Region%20Segmentation/Brain%20region%20segmentation%20and%20brain%20style%20transfer.png)
 
-Brain region segmentation and brain style transfer methods mainly serve for whole brain registration. We also provide model training and prediction methods respectively, please refer to [Brain region segmentation](https://github.com/lmbneuron/D-LMBmap/tree/main/Brain%20Region%20Segmentation) and [Brain style transfer](https://github.com/lmbneuron/D-LMBmap/tree/main/Brain%20Style%20Transfer).
+Brain region segmentation and brain style transfer methods mainly serve for whole brain registration. We also provide model training and prediction methods respectively, please refer to [Brain style transfer](https://github.com/lmbneuron/D-LMBmap/tree/main/Brain%20Style%20Transfer) and [Brain region segmentation](https://github.com/lmbneuron/D-LMBmap/tree/main/Brain%20Region%20Segmentation).
 
 Some models have been integrated into D-LMBmap software.
 

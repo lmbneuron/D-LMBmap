@@ -18,7 +18,7 @@ You can use D-LMBmap software by run the python code or download our software fr
 Please refer to the [tutorial](https://github.com/lmbneuron/D-LMBmap/tree/main/tutorial) before using the software. Our pre-trained models for the software are accessible [here](https://drive.google.com/drive/folders/1lEg_epSqCMjSUmVAdwwStvobXrEt82gq?usp=share_link).
 
 ## Axon Segmentation
-
+![Axon segmentation](https://github.com/lmbneuron/D-LMBmap/blob/main/Axon%20Segmentation/Data%20Preparation%20and%20Axon%20Segmentation/data/axon%20segmentation.png)
 We provide a whole-brain axon segmentation pipeline and model training method, which can be accessed [here](https://github.com/lmbneuron/D-LMBmap/tree/main/Axon%20Segmentation).
 
 Because the whole brain segmentation takes a certain amount of time, we will optimize the module and integrate it into the software in the future. At present, some small volumes can be segmented.
@@ -32,9 +32,7 @@ Brain region segmentation and brain style transfer methods mainly serve for whol
 Some models have been integrated into D-LMBmap software.
 
 ## Whole Brain Registration
-
 ![Architecture](https://github.com/lmbneuron/D-LMBmap/blob/main/Whole%20Brain%20Registration/imgs/architecture.png)
-
 [Here](https://github.com/lmbneuron/D-LMBmap/tree/main/Whole%20Brain%20Registration) is the code for the multi-constraint and multi-scale facilitated whole-brain registration, axon density related heatmap generation.
 
 ## License

@@ -31,5 +31,11 @@ Brain region segmentation and brain style transfer methods mainly serve for whol
 
 Some models have been integrated into D-LMBmap software.
 
+## Whole Brain Registration
+
+![Architecture](https://github.com/lmbneuron/D-LMBmap/blob/main/Whole%20Brain%20Registration/imgs/architecture.png)
+
+[Here](https://github.com/lmbneuron/D-LMBmap/tree/main/Whole%20Brain%20Registration) is the code for the multi-constraint and multi-scale facilitated whole-brain registration, axon density related heatmap generation.
+
 ## License
 This work is licensed under a Creative Commons Attribution 4.0 International License

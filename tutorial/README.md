@@ -1,6 +1,6 @@
 # D-LMBmap software
 
-[![Watch the video](https://github.com/lmbneuron/D-LMBmap/blob/main/tutorial/img/img.png)](https://github.com/lmbneuron/D-LMBmap/blob/main/tutorial/tutorial_video.mp4)
+We provide a [tutorial movie](https://github.com/lmbneuron/D-LMBmap/blob/main/tutorial/tutorial_video.mp4) with detailed instructions for using the D-LMBmap software. Users can follow the movie as a guide to achieve each module in whole brain projection mapping. 
 
 ## Documentation
 Our software consists of two interfaces, one is main inteface and the other one is registration inteface.

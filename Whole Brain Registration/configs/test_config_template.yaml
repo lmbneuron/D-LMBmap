@@ -1,0 +1,25 @@
+##--------------------------#
+# 1. TrainConfig
+##--------------------------#
+TrainConfig:
+  data: "./data/gt/data"  
+
+##--------------------------#
+# 2. DataConfig
+##--------------------------#
+DataConfig:
+  constrain:           ##select the region to deform when registration; default false
+    outline: False
+    hpf: True
+    hole: True
+    cp: True
+    cbx: True
+    ctx: True
+    bs: True
+    nn: False
+  
+MetricConfig:
+  act: "dice4sr"
+  fr: "dice4sr"
+  ipn: "dice4sr"
+  mh_lh: "dice4sr"

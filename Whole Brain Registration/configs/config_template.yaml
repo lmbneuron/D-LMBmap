@@ -1,0 +1,180 @@
+# template training config file
+
+##--------------------------#
+# 1. TrainConfig
+##--------------------------#
+TrainConfig:
+  mixed_precision_train: False       # if using the mix precision training
+  start_new_model: True
+  max_save_num: 2                    # numbers that checkpoint files saved; default 10
+  gpu: '1'                            # appoint the gpu use in training
+  data: "/media/root/01a3fb01-7912-492d-9561-d36a4da2ffef/zht/data/MS-RegNet/data/dbe_transfer/data_4/"    #the data pth
+  batch: 1
+  seed: 0  # random seed, default is 0
+  epoch: 1000
+  train_type: 0  # 0: single moving and fixed fix image, 1:random movimg, fiximg; default 0
+  checkpoint: "/media/root/01a3fb01-7912-492d-9561-d36a4da2ffef/zht/data/MS-RegNet/ckp/DBE_transfer_data_4_mi/checkpoint/3099.pth"     #checkpoint path
+
+##--------------------------#
+# 2. DataConfig
+##--------------------------#
+DataConfig:
+  use_deform: False    # if use the deform to do the augment
+  use_crop: False      # if use the crop to do the augment
+  constrain:           # select the region used in the training; default false
+    simi: True             # original img after preprocess
+    tra: True
+    outline: True          # if use the outline to do the registration
+    hpf: True              # if use hpf to do the registration
+    hole: False
+    cp: True
+    cbx: True
+    ctx: True
+    bs: True
+
+##--------------------------#
+# 3. ModelConfig
+##--------------------------#
+ModelConfig:
+  scale: 1            # assert scale in (1, 2, 3) how many resolutions to train the modelthe previous n-1 models have been trained well,
+  # only train the last one model
+  rigid:
+    num: 1
+    fusion_type: 0  # 0:concat regions， 1:put regions into one img; details in "model/backbone/fusion.py"; default 0
+    constrain:
+      # regions use in rigid part
+      simi: False
+      tra: True
+      outline: True
+      hpf: True
+      hole: False
+      cp: True
+      cbx: True
+      ctx: True
+      bs: True
+  affine:
+    num: 1
+    constrain:
+      # regions use in affine part
+      fusion_type: 0
+      simi: False
+      tra: True
+      outline: True
+  
+      hpf: True
+      hole: False
+      cp: True
+      cbx: True
+      ctx: True
+      bs: True
+  backbone:
+    num: 1
+    fusion_type: 0
+
+    # name and params of the non-linear network,
+    # such as bezier, voxelmorph
+
+    # if you want to use the voxelmorph network
+    type: "voxelmorph"   # base network of the whole network，select from ["voxelmorph", "vitmorph"]
+    median_filter_ksize: 15    #median filter kernel size，need to be an odd number
+    max_delta: 0.01   # max offset of each voxel, range from 0 to 1; default 1
+
+    # if you want to use the bezier network.
+    # the code is in ms_regnet/model/backbone/bezier.py
+#    type: "bezier"
+#    grid_space: 5  # means of the distance of the control points
+#    max_delta: 1
+#    scale: 3       # means how many control points will be used when calculating one point.
+#                   # if define 3, means 3*3*3 control points, 4 means 4*4*4, 2 means 2*2*2.
+#    pred_mode: 1   # 0 means predict an delta deform space and 1 means an to deform space.
+
+    constrain:
+      simi: True
+      tra: True
+      outline: True
+      convex: False
+      hole_pointcloud: False
+      hpf: True
+      hole: False
+      cp: True
+      cbx: True
+      ctx: True
+      bs: True
+
+
+##--------------------------#
+# 4. OptimConfig
+##--------------------------#
+OptimConfig:
+  load_checkpoint: False     # whether load a checkpoint in training, using the path defined in Trainconfig
+  rigid:
+    optimizer:
+      type: "Adam"
+      params:
+        lr: 0.0001
+    lr_scheduler:
+      type: "StepLR"
+      params:
+        step_size: 1600
+        gamma: 0.5
+        warmup: True
+        warmup_steps: 100
+  affine:
+    optimizer:
+      type: "Adam"
+      params:
+        lr: 0.0001
+    lr_scheduler:
+      type: "StepLR"
+      params:
+        step_size: 1600
+        gamma: 0.5
+        warmup: True
+        warmup_steps: 100
+  backbone:
+    optimizer:
+      type: "Adam"
+      params:
+        lr: 0.001
+    lr_scheduler:
+      type: "StepLR"
+      params:
+        step_size: 1600
+        gamma: 0.5
+        warmup: True
+        warmup_steps: 100
+
+##--------------------------#
+# 5. LossConfig
+##--------------------------#
+LossConfig:
+  loss:
+    simi: 'mi'             # which kind of similarity loss, select from["mi", "cc", "mse"]
+    tra: 'cc'
+    outline: 'mse'        # select from['mse', 'dice']，default 'mse'
+    hpf: 'mse'            # select from['mse', 'dice']，default 'mse'
+    hole: 'mse'           # select from['mse', 'dice']，default 'mse'
+    cp: 'mse'             # select from['mse', 'dice']，default 'mse'
+  constrain: ##loss weight of different region, the less the number is, the high weight it gains; default 1 
+    simi: 1 # about 70% to the contribution of the total loss
+    tra: 1
+    outline: 1
+    hpf: 40
+    hole: 40
+    cp: 40
+    bs: 40
+    cbx: 40
+    ctx: 40
+  factor:   ##weight of different loss in regularization loss
+    use_factor: True # whether using weight in regularization loss; default True
+    indent_loss: 1
+    inv_loss: 10
+    det_loss: 1
+    reg_loss: 10
+
+
+##--------------------------#
+# 6. MetricConfig
+##--------------------------#
+MetricConfig:
+  outline: 'dice'        # which kind of metric, select from["iou", "dice", "dice4sr"], default 'dice'

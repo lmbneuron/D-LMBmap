@@ -1,0 +1,171 @@
+##--------------------------#
+# 1. TrainConfig
+##--------------------------#
+TrainConfig:
+  mixed_precision_train: False
+  start_new_model: True
+  max_save_num: 2             
+  gpu: '1'                    
+  data: "./data/data_4"   
+  batch: 1                
+  epoch: 1000
+  train_type: 0 
+  checkpoint: ""
+
+##--------------------------#
+# 2. DataConfig
+##--------------------------#
+DataConfig:
+  use_deform: False    # if use the deform to do the augment
+  use_crop: False      # if use the crop to do the augment
+  constrain:       
+    simi: True     
+    tra: True
+    outline: True  
+    hpf: True
+    hole: True
+    cp: True
+    cbx: True
+    ctx: True
+    bs: True
+    aq: True
+
+##--------------------------#
+# 3. ModelConfig
+##--------------------------#
+ModelConfig:
+  scale: 1
+  rigid:
+    num: 0
+    fusion_type: 0
+    constrain:
+      simi: False
+      outline: True
+      hpf: True
+      hole: True
+      cp: True
+      aq: True
+  affine:
+    num: 1
+    constrain:
+      fusion_type: 0
+      simi: False
+      tra: False
+      outline: True
+      hpf: True
+      hole: True
+      cp: True
+      cbx: True
+      ctx: True
+      bs: True
+      aq: True
+  backbone:
+    num: 1
+    type: "voxelmorph"
+    median_filter_ksize: 15
+    fusion_type: 1  
+    max_delta: 1
+    constrain:
+      simi: True
+      tra: True
+      outline: True
+      hpf: True
+      hole: True
+      cp: True
+      cbx: True
+      ctx: True
+      bs: True
+      aq: True
+
+
+##--------------------------#
+# 4. OptimConfig
+##--------------------------#
+OptimConfig:
+  load_checkpoint: False
+  rigid:
+    optimizer:
+      type: "Adam"
+      params:
+        lr: 0.0001
+    lr_scheduler:
+      type: "StepLR"
+      params:
+        step_size: 800
+        gamma: 0.5
+        warmup: True
+        warmup_steps: 100
+  affine:
+    optimizer:
+      type: "Adam"
+      params:
+        lr: 0.0001
+    lr_scheduler:
+      type: "StepLR"
+      params:
+        step_size: 800
+        gamma: 0.5
+        warmup: True
+        warmup_steps: 100
+  bspline:
+    optimizer:
+      type: "Adam"
+      params:
+        lr: 0.01
+    lr_scheduler:
+      type: "StepLR"
+      params:
+        step_size: 800
+        gamma: 0.5
+        warmup: True
+        warmup_steps: 100
+  backbone:
+    optimizer:
+      type: "Adam"
+      params:
+        lr: 0.001
+    lr_scheduler:
+      type: "StepLR"
+      params:
+        step_size: 800
+        gamma: 0.5
+        warmup: True
+        warmup_steps: 100
+
+##--------------------------#
+# 5. LossConfig
+##--------------------------#
+LossConfig:
+  loss:
+    simi: 'mi'
+    tra: 'cc'
+    outline: 'mse'
+    convex: 'dice'
+    hole_pointcloud: 'cd'
+    hpf: 'mse'
+    hole: 'mse'
+    cp: 'mse'
+    csc: 'mse'
+    hole_landmark: "mse"
+    aq: 'mse'
+  stage: 2
+  constrain:
+    simi: 1
+    tra: 5
+    outline: 20
+    convex: 1
+    hole_pointcloud: 40
+    hpf: 80
+    hole: 80
+    cp: 40
+    csc: 40
+    bs: 40
+    cbx: 40
+    ctx: 40
+    aq: 40
+  factor:
+    use_factor: True
+    indent_loss: 10
+    inv_loss: 1
+    det_loss: 1
+    reg_loss: 10

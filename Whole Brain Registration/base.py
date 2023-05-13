@@ -106,8 +106,11 @@ class Baser:
 
             spaces[i] = space
         
+        # crop the data due to the incompleteness of the moving image.
         # for k in mov_data.keys():
-        #     for space in spaces[:-1]:
+        #     for space in spaces:
+        #         space = torch.Tensor(space)
+        #         space = space.permute(0, 4, 1, 2, 3)
         #         mov_data[k]["img_raw"][space[:, 0:1, ...]<=-1] = 0
         #         mov_data[k]["img_raw"][space[:, 0:1, ...]>=1] = 0
         #         mov_data[k]["img_raw"][space[:, 1:2, ...]<=-1] = 0

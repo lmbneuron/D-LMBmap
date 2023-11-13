@@ -4,24 +4,23 @@
 ## Overview
 D-LMBmap, an end-to-end package providing an integrated workflow containing three modules based on novel deep-learning algorithms for whole-brain connectivity mapping: axon segmentation, brain region segmentation and whole-brain registration. D-LMBmap is the first method that does not require manual annotation for axon segmentation, and achieves quantitative analysis of whole-brain projectome in a single workflow with superior accuracy for multiple cell types in all of the modalities tested.
 
-Our pre-trained models and test dataset are accessible [here](https://drive.google.com/drive/folders/1wQ-gvxpLPXUk6D-2jdbttq_lOw1nzBzz?usp=share_link).
+Our test dataset are accessible [here](https://drive.google.com/drive/folders/1wQ-gvxpLPXUk6D-2jdbttq_lOw1nzBzz?usp=share_link).
 
 
 ![pipeline](./pipeline.png)
 ## D-LMBmap software
 [D-LMBmap V2.0](https://github.com/lmbneuron/D-LMBmap/releases)
 
-
 D-LMBmap provides an open-source software with convenient high-level application programming interfaces (APIs) that can be used to build applications and extensions. The GUI provides functionality for the selection and computation of different pre-trained deep models. 
-You can use D-LMBmap software by run the python code or download our software from github->[release](https://github.com/lmbneuron/D-LMBmap/releases).
+You can use D-LMBmap software by running the python code or download our software from github->[release](https://github.com/lmbneuron/D-LMBmap/releases).
 
-Please refer to the [tutorial](https://github.com/lmbneuron/D-LMBmap/tree/main/tutorial) before using the software. Our pre-trained models for the software are accessible [here](https://drive.google.com/drive/folders/1lEg_epSqCMjSUmVAdwwStvobXrEt82gq?usp=share_link).
+Please refer to the [tutorial](https://github.com/lmbneuron/D-LMBmap/tree/main/tutorial) before using the software. 
 
 ## Axon Segmentation
 ![Axon segmentation](https://github.com/lmbneuron/D-LMBmap/blob/main/Axon%20Segmentation/Data%20Preparation%20and%20Axon%20Segmentation/data/axon%20segmentation.png)
 We provide a whole-brain axon segmentation pipeline and model training method, which can be accessed [here](https://github.com/lmbneuron/D-LMBmap/tree/main/Axon%20Segmentation).
 
-Because the whole brain segmentation takes a certain amount of time, we will optimize the module and integrate it into the software in the future. At present, some small volumes can be segmented.
+Axon segmentation models have been integrated into D-LMBmap software. The Axon segmentation function in the software can be used for cubes of any size, including whole-brain segmentation.
 
 ## Brain Style Transfer & Brain Region Segmentation
 

@@ -1,3 +1,5 @@
+
+
 # D-LMBmap software
 
 We provide a [tutorial movie](https://github.com/lmbneuron/D-LMBmap/blob/main/tutorial/tutorial_video.mp4) with detailed instructions for using the D-LMBmap software. Users can follow the movie as a guide to achieve each module in whole brain projection mapping. 
@@ -36,9 +38,25 @@ brain in the input range).
 All the above operations can be undone with ctrl+z.
 -------
 ### 3. Axon segmentation
-1. Import data (axon stained cube, e.g. examples/test_axons_segmentation/cropped-volume147.tif)
-2. Click Axon segmentation->Cube based
+1. Import data (an axon stained cube or an axon stained whole brain data, e.g. examples/test_axons_segmentation/cropped-volume147.tif)
+
+2. Click Axon segmentation -> Segment by axon types -> Select an axon type -> OK
+
 3. Get segmented axons.
+
+4. Computational cost for reference
+
+   | Volume size     | CPU time | Memory Usage | GPU time | Graphics Memory usage |
+   | --------------- | -------- | ------------ | -------- | --------------------- |
+   | (150, 150, 150) | 4m       |              | 19s      |                       |
+   | (600, 600, 450) | 20s      |              |          |                       |
+   | Whole Brain     | 17s      |              | 5s       |                       |
+
+   Test Environment
+
+   CPU: Intel(R) Core(TM) i5-1135G7
+
+   GPU: NVIDIA GeForce RTX 4090
 -------
 ### 4. Style transfer
 1. Import data (brain data in 488 channel, e.g. examples/190312_488_LP70_ET50_Z08_HF0_17-26-21.tiff)
@@ -103,7 +121,7 @@ including SaveTransform, SaveImage and Save as Video.
   ![img.png](img/img5.png)
 -------
 ## Computation Cost
-We test reigstration, soma detection, axon segmentation, style transfer and brain region segmentation on the CPU and GPU. The time is shown below. (Soma detection can only run on the CPU.)
+We test reigstration, soma detection, axon segmentation, style transfer and brain region segmentation on the CPU and GPU. The time is shown below. (Soma detection can only run on the CPU)
 
 |Function\Time|  CPU   | GPU  |
 |---- |  ----  | ----  |

@@ -48,17 +48,19 @@ All the above operations can be undone with ctrl+z.
 
 5. Computational cost for reference
 
-   | Volume size                    | CPU time        | GPU time | Graphics Memory usage |
-   | ------------------------------ | --------------- | -------- | --------------------- |
-   | (150, 150, 150)                | 48s             | 4s       | 6 GB                  |
-   | (600, 600, 450)                | 32min           | 35s      | 9.6 GB                |
-   | (2160, 2560, 2078)—Whole Brain | GPU recommended |          | 16 GB                 |
+   | Volume size                      | CPU time        | GPU time | Graphics Memory usage |
+   | -------------------------------- | --------------- | -------- | --------------------- |
+   | (150, 150, 150)                  | 48s             | 4s       | < 8 GB                |
+   | (600, 600, 450)                  | 32min           | 35s      | < 8 GB                |
+   | (2160, 2560, 2078)—A Whole Brain | GPU recommended | 53min    | < 16 GB               |
 
    **Test Environment**
 
    CPU: AMD Ryzen 5 5600X 6-Core Processor 4.20 GHz
 
    GPU: NVIDIA GeForce RTX 4090
+   
+   System: Win10
 -------
 ### 4. Style transfer
 1. Import data (brain data in 488 channel, e.g. examples/190312_488_LP70_ET50_Z08_HF0_17-26-21.tiff)
@@ -132,7 +134,7 @@ We test reigstration, soma detection, axon segmentation, style transfer and brai
 |---- |  ----  | ----  | ----  | ----  |
 |Registration |(160, 228, 264) | 48s | -- | -- |
 |Soma detection |(320, 456, 528) | 40s |--|--|
-|Axon segmentation |(150, 150, 150) | 48s | 4s | 4.8 GB |
+|Axon segmentation |(150, 150, 150) | 48s | 4s | <8 GB |
 |Brain region segmentation |(320, 456, 528) | outline: 5min 8s<br>other regions: 1min 27s | 28s | 3.7 GB |
 |Style transfer|(320, 456, 528)| 12min 16s | 5min 8s | 11.4 GB |
 
@@ -141,3 +143,5 @@ We test reigstration, soma detection, axon segmentation, style transfer and brai
 CPU:  AMD Ryzen 5 5600X 6-Core Processor 4.20 GHz
 
 GPU: NVIDIA GeForce RTX 4090
+
+System: Win10

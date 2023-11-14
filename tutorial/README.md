@@ -4,10 +4,11 @@
 
 We provide a [tutorial movie](https://github.com/lmbneuron/D-LMBmap/blob/main/tutorial/tutorial_video.mp4) with detailed instructions for using the D-LMBmap software. Users can follow the movie as a guide to achieve each module in whole brain projection mapping. 
 
-## Documentation
+## 📚 Documentation
 Our software consists of two interfaces, one is main inteface and the other one is registration inteface.
 
-### 1. Import
+### 💡 Import
+
 You can import the file by the following actions. 
 
 * The data can be read by draging the file to the window. The are two types of files that can be read, one is a single file(including tiff, tif, nii, mhd format), the other is the entire folder, which are named in sequence tiff file.
@@ -21,7 +22,8 @@ You can import the file by the following actions.
   
 * If you open a folder, you need to compress it (i.e. set Compress size). For one single file, the data is read as the original size because of one file cannot be too big. But for folders, you need to select the compressed size. The Compress size is calculated by dividing compressed image size by original image size (1 represents the original size), so it should be a number less than 1. (If it is a 20G folder, just choose 0.1 0.2. It will get stuck if the Compress size is too big).
 -------
-### 2. Image operation
+### 💡 Image operation
+
 After importing the files (e.g. Click File->Open file and choose the examples/190312_488_LP70_ET50_Z08_HF0_17-26-21.tiff), you can do some image operations.
 * **Mirror**. Mirrored brain based on the assigned normal
 plane
@@ -37,7 +39,8 @@ brain in the input range).
 * **Rename file names**. Directly input the new file name on the left panel.
 All the above operations can be undone with ctrl+z.
 -------
-### 3. Axon segmentation
+### 💡 Axon segmentation
+
 1. Import data (an axon stained cube or an axon stained whole brain data, e.g. examples/cropped-volume147.tif or a folder full of 2D axon stained tiffs)
 
 2. Click Axon segmentation -> Segment by axon types -> Select an axon type -> OK
@@ -62,18 +65,21 @@ All the above operations can be undone with ctrl+z.
    
    System: Win10
 -------
-### 4. Style transfer
+### 💡 Style transfer
+
 1. Import data (brain data in 488 channel, e.g. examples/190312_488_LP70_ET50_Z08_HF0_17-26-21.tiff)
 2. Click Region-wise operation->Start style transfer.
 3. Select source data type (Adipo-clear) and target data type (Allen atlas).
 4. Get style transferred brain.
 -------
-### 5. Brain region segmentation
+### 💡 Brain region segmentation
+
 1. Import data (brain data in 488 channel, e.g. examples/190312_488_LP70_ET50_Z08_HF0_17-26-21.tiff)
 2. Click Region-wise operation->Start brain region segmentation.
 3. Select brain regions need to be segmented, including brain outline, major brain regions (CP, HPF, CTX, CB, CBX, BS), small brain regions (IPN, act, Hb, mtt, fr).
 -------
-### 6. Soma detection
+### 💡 Soma detection
+
 **Cube-based soma detection**
 
 1. Import data (brain data in 488 channel, e.g. examples/190312_488_LP70_ET50_Z08_HF0_17-26-21.tiff).
@@ -88,7 +94,8 @@ All the above operations can be undone with ctrl+z.
 2. Click Soma detection->Whole brain wide.
 3. Get detected some in whole brain.
 -------
-### 7. Registration
+### 💡 Registration
+
 1. Import data(brain data in 488 channel, e.g. examples/190312_ 488_LP70_ET50_Z08_HF0_17-26-21.vset)
 2. Click Registration and turn to the Registation Interface.
 3. Click "Moving" on top left-->File-->Import-->From main interface
@@ -115,7 +122,7 @@ After registration, the following actions can be done.
 1. Click Combine.
 2. Visualize and compare Moving brain, Fix brain, Registratiojn brain, heatmap brain slice by-slice
 -------
-### 8. Export
+### 💡 Export
 
 including SaveTransform, SaveImage and Save as Video.
 
@@ -127,10 +134,11 @@ including SaveTransform, SaveImage and Save as Video.
   
   ![img.png](img/img5.png)
 -------
-## Computation Cost
+## 🔨Computation Cost
+
 We test reigstration, soma detection, axon segmentation, style transfer and brain region segmentation on the CPU and GPU. The time is shown below. (Registration, Soma detection and outline selection in Brain region segmentation can only run on CPU now)
 
-|Function\Time|Data size|  CPU   | GPU  | Graphics Memory usage |
+|Function|Data size|  CPU time  | GPU time | Graphics Memory usage |
 |---- |  ----  | ----  | ----  | ----  |
 |Registration |(160, 228, 264) | 48s | -- | -- |
 |Soma detection |(320, 456, 528) | 40s |--|--|

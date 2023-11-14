@@ -9,7 +9,7 @@ Our test dataset are accessible [here](https://drive.google.com/drive/folders/1w
 
 ![pipeline](./pipeline.png)
 ## D-LMBmap software
-[D-LMBmap V2.0](https://github.com/lmbneuron/D-LMBmap/releases)
+[D-LMBmap V3.0](https://github.com/lmbneuron/D-LMBmap/releases)
 
 D-LMBmap provides an open-source software with convenient high-level application programming interfaces (APIs) that can be used to build applications and extensions. The GUI provides functionality for the selection and computation of different pre-trained deep models. 
 You can use D-LMBmap software by running the python code or download our software from github->[release](https://github.com/lmbneuron/D-LMBmap/releases).

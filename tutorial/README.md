@@ -135,8 +135,8 @@ We test reigstration, soma detection, axon segmentation, style transfer and brai
 |Registration |(160, 228, 264) | 48s | -- | -- |
 |Soma detection |(320, 456, 528) | 40s |--|--|
 |Axon segmentation |(150, 150, 150) | 48s | 4s | <8 GB |
-|Brain region segmentation |(320, 456, 528) | outline: 5min 8s<br>other regions: 1min 27s | 28s | 3.7 GB |
-|Style transfer|(320, 456, 528)| 12min 16s | 5min 8s | 11.4 GB |
+|Brain region segmentation |(320, 456, 528) | outline: 5min 8s<br>other regions: 1min 27s | 25s | 3.7 GB |
+|Style transfer|(320, 456, 528)| 12min 16s | 5min 8s | 11.8 GB |
 
 **Test Environment**
 

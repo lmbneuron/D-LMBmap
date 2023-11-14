@@ -38,23 +38,25 @@ brain in the input range).
 All the above operations can be undone with ctrl+z.
 -------
 ### 3. Axon segmentation
-1. Import data (an axon stained cube or an axon stained whole brain data, e.g. examples/test_axons_segmentation/cropped-volume147.tif)
+1. Import data (an axon stained cube or an axon stained whole brain data, e.g. examples/cropped-volume147.tif or a folder full of 2D axon stained tiffs)
 
 2. Click Axon segmentation -> Segment by axon types -> Select an axon type -> OK
 
 3. Get segmented axons.
 
-4. Computational cost for reference
+4. Note: If you want to segment axons in a whole brain, there may be several minutes for the software to load the data before segmentation beginning.
 
-   | Volume size     | CPU time | Memory Usage | GPU time | Graphics Memory usage |
-   | --------------- | -------- | ------------ | -------- | --------------------- |
-   | (150, 150, 150) | 4m       |              | 19s      |                       |
-   | (600, 600, 450) | 20s      |              |          |                       |
-   | Whole Brain     | 17s      |              | 5s       |                       |
+5. Computational cost for reference
 
-   Test Environment
+   | Volume size                    | CPU time        | GPU time | Graphics Memory usage |
+   | ------------------------------ | --------------- | -------- | --------------------- |
+   | (150, 150, 150)                | 48s             | 4s       | 6 GB                  |
+   | (600, 600, 450)                | 32min           | 35s      | 9.6 GB                |
+   | (2160, 2560, 2078)—Whole Brain | GPU recommended |          | 16 GB                 |
 
-   CPU: Intel(R) Core(TM) i5-1135G7
+   **Test Environment**
+
+   CPU: AMD Ryzen 5 5600X 6-Core Processor 4.20 GHz
 
    GPU: NVIDIA GeForce RTX 4090
 -------
@@ -62,15 +64,16 @@ All the above operations can be undone with ctrl+z.
 1. Import data (brain data in 488 channel, e.g. examples/190312_488_LP70_ET50_Z08_HF0_17-26-21.tiff)
 2. Click Region-wise operation->Start style transfer.
 3. Select source data type (Adipo-clear) and target data type (Allen atlas).
-4. Get style transferred brain (need about 6 minutes).
+4. Get style transferred brain.
 -------
 ### 5. Brain region segmentation
 1. Import data (brain data in 488 channel, e.g. examples/190312_488_LP70_ET50_Z08_HF0_17-26-21.tiff)
-2. Click Region-wise operation->Start segmentation.
+2. Click Region-wise operation->Start brain region segmentation.
 3. Select brain regions need to be segmented, including brain outline, major brain regions (CP, HPF, CTX, CB, CBX, BS), small brain regions (IPN, act, Hb, mtt, fr).
 -------
 ### 6. Soma detection
 **Cube-based soma detection**
+
 1. Import data (brain data in 488 channel, e.g. examples/190312_488_LP70_ET50_Z08_HF0_17-26-21.tiff).
 2. Click Soma detection->Cube based.
 3. assign cube size and the location of cube center.
@@ -78,6 +81,7 @@ All the above operations can be undone with ctrl+z.
 5. Get detected some in assigned cubes.
 
 **Whole-brain wide soma detection**
+
 1. Import data (brain data in 488 channel, e.g. examples/190312_488_LP70_ET50_Z08_HF0_17-26-21.tiff)
 2. Click Soma detection->Whole brain wide.
 3. Get detected some in whole brain.
@@ -91,10 +95,11 @@ All the above operations can be undone with ctrl+z.
 6. Optionally, Users can also upload a whole-brain segmented axon file.
 7. Click "Action"-->Register.
 8. Select brain regions for constrain.
-9. Obtain registerred brain (in column-3 -->Registration) (about 3 minutes).
+9. Obtain registerred brain (in column-3 -->Registration).
 
-After registration, the following actions can be done.\
+After registration, the following actions can be done.
 **Create heatmap**
+
 1. Click "Action"-->Creat heatmap.
 2. Select one mask (e.g. axon).
 3. Obtain heatmap with axon density in hundreds of brain regions.
@@ -121,14 +126,18 @@ including SaveTransform, SaveImage and Save as Video.
   ![img.png](img/img5.png)
 -------
 ## Computation Cost
-We test reigstration, soma detection, axon segmentation, style transfer and brain region segmentation on the CPU and GPU. The time is shown below. (Soma detection can only run on the CPU)
+We test reigstration, soma detection, axon segmentation, style transfer and brain region segmentation on the CPU and GPU. The time is shown below. (Registration, Soma detection and outline selection in Brain region segmentation can only run on CPU now)
 
-|Function\Time|  CPU   | GPU  |
-|---- |  ----  | ----  |
-|registration | 4m  | 19s |
-|soma detection | 20s |
-|axon segmentation | 17s | 5s |
-|brain region segmentation | 5m | 1m 40s |
-|style transfer| 11m | 6m 30s |
+|Function\Time|Data size|  CPU   | GPU  | Graphics Memory usage |
+|---- |  ----  | ----  | ----  | ----  |
+|Registration |(160, 228, 264) | 48s | -- | -- |
+|Soma detection |(320, 456, 528) | 40s |--|--|
+|Axon segmentation |(150, 150, 150) | 48s | 4s | 4.8 GB |
+|Brain region segmentation |(320, 456, 528) | outline: 5min 8s<br>other regions: 1min 27s | 28s | 3.7 GB |
+|Style transfer|(320, 456, 528)| 12min 16s | 5min 8s | 11.4 GB |
 
-CPU:  Intel(R) Core(TM) i5-9500; GPU: NVIDIA GeForce RTX 3060Ti
+**Test Environment**
+
+CPU:  AMD Ryzen 5 5600X 6-Core Processor 4.20 GHz
+
+GPU: NVIDIA GeForce RTX 4090

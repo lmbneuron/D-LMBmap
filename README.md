@@ -36,6 +36,10 @@ Some models have been integrated into D-LMBmap software.
 ![Architecture](https://github.com/lmbneuron/D-LMBmap/blob/main/Whole%20Brain%20Registration/imgs/architecture.png)
 [Here](https://github.com/lmbneuron/D-LMBmap/tree/main/Whole%20Brain%20Registration) is the code for the multi-constraint and multi-scale facilitated whole-brain registration, axon density related heatmap generation.
 
+## 🙋‍♀️ Feedback and Contact
+
+If you encounter any issues, please feel free to contact us at zhongyuli@xjtu.edu.cn
+
 ## 🎫 License
 
 This work is licensed under a Creative Commons Attribution 4.0 International License

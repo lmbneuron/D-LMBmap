@@ -87,6 +87,7 @@ def histogram_match_data(base, source, task_id, task_name, spacing, n_samples, i
     data_path = join(base, 'train') if flag else join(base, 'val')
 
     volumes_folder_path = join(data_path, "volumes")
+    print("data_path:===>", data_path)
     # skeletonized annotations are used for training, while original annotations are used for evaluation
     labels_folder_path = join(data_path, "Fine-label") if flag else join(data_path, 'Rough-label')
     volumes_path = myutils.get_dir(volumes_folder_path)
@@ -108,7 +109,7 @@ def histogram_match_data(base, source, task_id, task_name, spacing, n_samples, i
     total_ori_volumes = 0
     with tqdm(total=(len(volumes_path) + len(artifacts_path)) * 2, desc=f'original volume numbers') as pbar:
         for vpath, lpath in zip(volumes_path, labels_path):
-            case = str(vpath).split(".")[0].split("-")[1]
+            case = str(vpath).split(".")[0].split("-")[-1]
             casename = task_name + case
             casenames.append(casename)
 
@@ -123,7 +124,7 @@ def histogram_match_data(base, source, task_id, task_name, spacing, n_samples, i
             pbar.update()
         if match_flag and join_flag:
             for vpath_s, lpath_s in zip(volumes_path_s, labels_path_s):
-                case = str(vpath_s).split(".")[0].split("-")[1]
+                case = str(vpath_s).split(".")[0].split("-")[-1]
                 casename = task_name + case
                 casenames.append(casename)
 
@@ -155,7 +156,7 @@ def histogram_match_data(base, source, task_id, task_name, spacing, n_samples, i
         print("aug_axon_num: ", aug_axon_num)
         if data_mix:
             for apath in artifacts_path:
-                case_a = str(apath).split(".")[0].split("-")[1]
+                case_a = str(apath).split(".")[0].split("-")[-1]
                 casename_a = task_name + "a" + case_a
                 casenames.append(casename_a)
 
@@ -171,7 +172,7 @@ def histogram_match_data(base, source, task_id, task_name, spacing, n_samples, i
                 pbar.update()
             if match_flag and join_flag:
                 for apath_s in artifacts_path_s:
-                    case_a = str(apath_s).split(".")[0].split("-")[1]
+                    case_a = str(apath_s).split(".")[0].split("-")[-1]
                     casename_a = task_name + "a" + case_a
                     casenames.append(casename_a)
                     artifact = myutils.read_tiff_stack(apath_s)
@@ -327,10 +328,10 @@ def histogram_match_data(base, source, task_id, task_name, spacing, n_samples, i
 
 
 if __name__ == "__main__":
-    base = ""  # train data path
-    source = ""  # (if needed)data used for histogram match
-    task_id = 700  # task id should be unique(better >200 to avoid conflict)
-    task_name = ''
+    base = "/media/root/e8449930-91ce-40a4-a5c5-87d4d2cd1568/lpq/nnUNet/nnUNetData/base/HPF"  # train data path
+    source = "/media/root/e8449930-91ce-40a4-a5c5-87d4d2cd1568/lpq/nnUNet/nnUNetData/base/HPF"  # (if needed)data used for histogram match
+    task_id = 405  # task id should be unique(better >200 to avoid conflict)
+    task_name = 'test_code'
     spacing = (1, 0.126, 0.126)  # probably no need to change
     histogram_match_data(base, source, task_id, task_name, spacing,
                          2,  # number of samples(usually 2-6, depend on number of original training cubes)

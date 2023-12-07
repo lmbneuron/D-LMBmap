@@ -41,7 +41,7 @@ the skeletonized annotations, the automatically annotated masks and the axon cub
 ```
 └── base(original training data)
 　　 └── train
-　 　 　　├── cropped-cubes(training axon cubes)
+　 　 　　├── volumes(training axon cubes)
 　　  　　│　　└──volume-001.tiff
 　　  　　├── Rough-label(automatically annotated masks)
 　　 　 　│　　└──label-001.tiff
@@ -51,7 +51,7 @@ the skeletonized annotations, the automatically annotated masks and the axon cub
 　　 　　　　　└──volume-200.tiff
 └── source(data used for histogram matching)
 　　 └── train
-　 　 　　├── cropped-cubes
+　 　 　　├── volumes
 　　  　　│　　└──volume-001.tiff
 　　  　　├── Rough-label
 　　 　 　│　　└──label-001.tiff
@@ -64,6 +64,7 @@ We propose three data augmentation methods, histogram matching, cutmix, and loca
 Change the parameters of function `histogram_match_data` in `create_data.py` to choose using histogram matching/cutmix/contrast enhancement or 
 not. If you want to use histogram matching, it is better to set both **match_flag** and **join_flag** True so that both 
 original cubes and matched cubes can be used for training.
+
 ```
 cutmix=True  # use cutmix, mix up axon cubes and artifact cubes
 match_flag=True, join_flag=True  # use histogram matching, join matched and original cubes
@@ -86,7 +87,11 @@ can be used with options like `-pl3d ExperimentPlanner3D_v21_16GB`.
 ## 3 Model training
 Our model trains all U-Net configurations in a 5-fold cross-validation. This enables the model to determine the 
 postprocessing and ensembling (see next step) on the training dataset. 
+
+Before training, you can change epoch number and initial learning rate in this file: `Axon Segmentation/Axon segmentation model training/nnunet/training/network_training/nnUNetTrainerV2.py`
+
 Training models is done with the `nnUNet_train` command. The general structure of the command is:
+
 ```bash
 nnUNet_train CONFIGURATION TRAINER_CLASS_NAME TASK_NAME_OR_ID FOLD --npz (additional options)
 ```
@@ -100,35 +105,30 @@ We also propose networks with attention modules. You can use TRAINER_CLASS_NAME 
 Out model stores a checkpoint every 50 epochs. If you need to continue a previous training, just add a `-c` to the 
 training command. Use the `-h` argument for more settings of parameters. 
 For FOLD in [0, 1, 2, 3, 4], a sample command is (if `-pl3d ExperimentPlanner3D_v21_16GB` used in step 2): 
+
 ```
 nnUNet_train 3d_fullres MyTrainerAxial TaskXXX_MYTASK FOLD -p nnUNetPlansv2.1_16GB
 ```
 The trained models will be written to the `DATASET/trained_models/nnUNet` folder. Each training obtains an automatically generated 
-output folder name `DATASET/preprocessed/CONFIGURATION/TaskXXX_MYTASKNAME/TRAINER_CLASS_NAME__PLANS_FILE_NAME/FOLD`.
+output folder name `DATASET/preprocessed/CONFIGURATION/TaskXXX_MYTASKNAME/TRAINER_CLASS_NAME__PLANS_FILE_NAME/FOLD`.  `XXX` is task_id
 Multi GPU training is not supported.
 
 ## 4 Cube Prediction
 Once all 5-fold models are trained, use the following command to automatically determine what 
 U-Net configuration(s) to use for test set prediction:
-```bash
-nnUNet_find_best_configuration -m 3d_fullres -t XXX --strict
-```
-This command will print a string to the terminal with the inference commands you need to use. 
-The easiest way to run inference is to simply use these commands. 
 
-For each of the desired configurations(e.g. 3d_fullres), run:
+```bash
+nnUNet_find_best_configuration -m 3d_fullres -t XXX -tr TRAINER_CLASS_NAME
 ```
-nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t TASK_NAME_OR_ID -m CONFIGURATION --save_npz
-```
-Only specify `--save_npz` if you intend to use ensembling. `--save_npz` will make the command save the softmax 
-probabilities alongside of te predicted segmentation masks requiring a lot of disk space. You can also use `-f` to specify 
-folder id(s) if not all 5-folds has been trained. 
-`--tr` option can be used to specify TRAINER_CLASS_NAME, which should be consistent with the class used in model training. 
+ `XXX` is task_id. This command will print a string to the terminal with the inference commands you need to use. 
+The easiest way to run inference is to simply use these commands. 
 
 A sample command using an U-Net with attention module to generate predictions is: 
 `
 nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t XXX --tr MyTrainerAxial -m 3d_fullres -p nnUNetPlansv2.1_16GB
 `
+
+`--tr` option can be used to specify TRAINER_CLASS_NAME, which should be consistent with the class used in model training. ou can also use `-f` to specify folder id(s) if not all 5-folds has been trained. 
 
 We extract the model weights from the saved checkpoint files(e.g. model_final_checkpoint.model) to `pth` files.
 Run `python save_models.py`. The `pth` file will be used for whole brain axon prediction.

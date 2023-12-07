@@ -104,10 +104,10 @@ We also propose networks with attention modules. You can use TRAINER_CLASS_NAME 
 
 Out model stores a checkpoint every 50 epochs. If you need to continue a previous training, just add a `-c` to the 
 training command. Use the `-h` argument for more settings of parameters. 
-For FOLD in [0, 1, 2, 3, 4], a sample command is (if `-pl3d ExperimentPlanner3D_v21_16GB` used in step 2): 
+For FOLD in [0, 1, 2, 3, 4], a sample command is: 
 
 ```
-nnUNet_train 3d_fullres MyTrainerAxial TaskXXX_MYTASK FOLD -p nnUNetPlansv2.1_16GB
+nnUNet_train 3d_fullres MyTrainerAxial TaskXXX_MYTASK FOLD
 ```
 The trained models will be written to the `DATASET/trained_models/nnUNet` folder. Each training obtains an automatically generated 
 output folder name `DATASET/preprocessed/CONFIGURATION/TaskXXX_MYTASKNAME/TRAINER_CLASS_NAME__PLANS_FILE_NAME/FOLD`.  `XXX` is task_id
@@ -118,18 +118,20 @@ Once all 5-fold models are trained, use the following command to automatically d
 U-Net configuration(s) to use for test set prediction:
 
 ```bash
-nnUNet_find_best_configuration -m 3d_fullres -t XXX
+nnUNet_find_best_configuration -m 3d_fullres -t XXX -tr MyTrainerAxial
 ```
- `XXX` is task_id. This command will print a string to the terminal with the inference commands you need to use. 
+This command will print a string to the terminal with the inference commands you need to use. 
 The easiest way to run inference is to simply use these commands. 
 
 A sample command using an U-Net with attention module to generate predictions is: 
 
 ```
-nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t XXX --tr MyTrainerAxial -m 3d_fullres -p nnUNetPlansv2.1_16GB
+nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t XXX --tr MyTrainerAxial -m 3d_fullres -p nnUNetPlansv2.1
 ```
 
-`--tr` option can be used to specify TRAINER_CLASS_NAME, which should be consistent with the class used in model training. ou can also use `-f` to specify folder id(s) if not all 5-folds has been trained. 
+ In above two commands, `XXX` is task_id, `--tr` option can be used to specify TRAINER_CLASS_NAME, which should be consistent with the class used in model training. 
+
+You can also use `-f` to specify folder id(s) if not all 5-folds has been trained. 
 
 We extract the model weights from the saved checkpoint files(e.g. model_final_checkpoint.model) to `pth` files.
 Run `python save_models.py`. The `pth` file will be used for whole brain axon prediction.

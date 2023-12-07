@@ -118,15 +118,16 @@ Once all 5-fold models are trained, use the following command to automatically d
 U-Net configuration(s) to use for test set prediction:
 
 ```bash
-nnUNet_find_best_configuration -m 3d_fullres -t XXX -tr TRAINER_CLASS_NAME
+nnUNet_find_best_configuration -m 3d_fullres -t XXX
 ```
  `XXX` is task_id. This command will print a string to the terminal with the inference commands you need to use. 
 The easiest way to run inference is to simply use these commands. 
 
 A sample command using an U-Net with attention module to generate predictions is: 
-`
+
+```
 nnUNet_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -t XXX --tr MyTrainerAxial -m 3d_fullres -p nnUNetPlansv2.1_16GB
-`
+```
 
 `--tr` option can be used to specify TRAINER_CLASS_NAME, which should be consistent with the class used in model training. ou can also use `-f` to specify folder id(s) if not all 5-folds has been trained. 
 

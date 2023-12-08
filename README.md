@@ -1,6 +1,14 @@
 # D-LMBmap
 [![DOI](https://zenodo.org/badge/DOI/10.21203/rs.3.rs-2188055/v1.svg)](https://doi.org/10.21203/rs.3.rs-2188055/v1)
 ![logo](./D-LMBmap.png)
+
+- [Paper](https://www.nature.com/articles/s41592-023-01998-6)
+- [Software](https://github.com/lmbneuron/D-LMBmap/releases)
+- [Axon Segmentation](https://github.com/lmbneuron/D-LMBmap/tree/main/Axon Segmentation)
+- [Brain Region Segmentation](https://github.com/lmbneuron/D-LMBmap/tree/main/Brain Region Segmentation)
+- [Brain Style Transfer](https://github.com/lmbneuron/D-LMBmap/tree/main/Brain Style Transfer)
+- [Whole Brain Registration](https://github.com/lmbneuron/D-LMBmap/tree/main/Whole Brain Registration)
+
 ## 🗼 Overview
 
 D-LMBmap, an end-to-end package providing an integrated workflow containing three modules based on novel deep-learning algorithms for whole-brain connectivity mapping: axon segmentation, brain region segmentation and whole-brain registration. D-LMBmap is the first method that does not require manual annotation for axon segmentation, and achieves quantitative analysis of whole-brain projectome in a single workflow with superior accuracy for multiple cell types in all of the modalities tested.

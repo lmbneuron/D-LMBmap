@@ -4,10 +4,10 @@
 
 - [Paper](https://www.nature.com/articles/s41592-023-01998-6)
 - [Software](https://github.com/lmbneuron/D-LMBmap/releases)
-- [Axon Segmentation](https://github.com/lmbneuron/D-LMBmap/tree/main/Axon Segmentation)
-- [Brain Region Segmentation](https://github.com/lmbneuron/D-LMBmap/tree/main/Brain Region Segmentation)
-- [Brain Style Transfer](https://github.com/lmbneuron/D-LMBmap/tree/main/Brain Style Transfer)
-- [Whole Brain Registration](https://github.com/lmbneuron/D-LMBmap/tree/main/Whole Brain Registration)
+- [Axon Segmentation](https://github.com/lmbneuron/D-LMBmap/tree/main/Axon%20Segmentation)
+- [Brain Region Segmentation](https://github.com/lmbneuron/D-LMBmap/tree/main/Brain%20Region%20Segmentation)
+- [Brain Style Transfer](https://github.com/lmbneuron/D-LMBmap/tree/main/Brain%20Style%20Transfer)
+- [Whole Brain Registration](https://github.com/lmbneuron/D-LMBmap/tree/main/Whole%20Brain%20Registration)
 
 ## 🗼 Overview
 
@@ -46,7 +46,7 @@ Some models have been integrated into D-LMBmap software.
 
 ## 🙋‍♀️ Feedback and Contact
 
-If you encounter any issues, please feel free to contact us at zhongyuli@xjtu.edu.cn
+If you encounter any issues, please feel free to contact us at lipeiqi@stu.xjtu.edu.cn or zhongyuli@xjtu.edu.cn
 
 ## 🎫 License
 

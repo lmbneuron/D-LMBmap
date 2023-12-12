@@ -4,7 +4,7 @@ import torch, os
 os.environ["CUDA_VISIBLE_DEVICES"] = "2, 3"
 import torch.optim as optim
 import config
-from utils import init_util, metrics, common
+from utils import common
 from tqdm import tqdm
 from collections import OrderedDict
 from load_dataset_3D import *

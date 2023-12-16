@@ -17,7 +17,7 @@ parser.add_argument('--resume',default='/output/result/12/epoch100.pth',help='sa
 
 parser.add_argument('--save_nii',default='output/CH/result', help='save path of result')
 
-parser.add_argument('--name',default='CCH', help='brain region')
+parser.add_argument('--name',default='CH', help='brain region')
 
 parser.add_argument('--test_txt',default='brain1.txt',help='test txt name')
 

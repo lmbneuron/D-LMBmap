@@ -52,13 +52,6 @@ Python 3.7.3
   └──3dto2d_mask.py
   ```
 
-  Usage
-
-  ```
-  python 3dto2d_mask.py [-h] [--file_dir FILE_DIR] [--file_3d FILE_3D] [--save_dir SAVE_DIR] [--file_2d FILE_2D]
-                        [--type TYPE] [--image_shape IMAGE_SHAPE]
-  ```
-
   A sample command to run the python file is:
 
   ```

@@ -5,7 +5,8 @@ First of all, prepare the environment.
 
 (2) Install the dependencies with the following commands: 
 ```
-pip install nnunet
+cd "Axon segmentation model training"
+pip install -e .
 pip install -r requirements.txt
 ```
 (3) Our model needs to know where you intend to save raw data, preprocessed data and trained models. For this you need to 

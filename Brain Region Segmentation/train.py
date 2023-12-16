@@ -1,7 +1,7 @@
 from torch.utils.data import DataLoader
 import torch, os
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "2, 3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 import torch.optim as optim
 import config
 from utils import common
@@ -119,9 +119,7 @@ def train(iter_num_1, iter_num_2):
                                                                                              optimizer_1,
                                                                                              ema_model_1,
                                                                                              iter_num_1, data_1,
-                                                                                             target_1, 1,
-                                                                                             args.num_classes,
-                                                                                             args.epochs)
+                                                                                             target_1, 1)
 
         loss_1_2D += loss_1
 
@@ -169,9 +167,7 @@ def train(iter_num_1, iter_num_2):
                                                                                              optimizer_2,
                                                                                              ema_model_2,
                                                                                              iter_num_2, data_2,
-                                                                                             target_2, 0,
-                                                                                             args.num_classes,
-                                                                                             args.epochs)
+                                                                                             target_2, 0)
 
         loss_2_2D += loss_2
 

@@ -194,7 +194,7 @@ class Attention_block(nn.Module):
 
 class CEA_Net(nn.Module):
     def __init__(self, num_classes=1, num_channels=1):
-        super(CE_Net, self).__init__()
+        super(CEA_Net, self).__init__()
 
         filters = [64, 128, 256, 512]
         f = 516

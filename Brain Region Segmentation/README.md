@@ -31,6 +31,33 @@ Python 3.7.3
 │   │       └──...
 ```
 
+- `3dto2d_mask.py` is a tool that can convert a 3D label with the suffix .nii (or .tiff) into a 2D image with suffix .ome.nii
+
+  Before running it, please make sure the directory structure of the mask is as follows:
+
+  ```
+  ├── mask
+  │   ├──mask_3d
+  │   │  ├──MASK_NAME.nii
+  │   │  ├──...
+  │   ├──mask_2d (Automatic creation)
+  │   │  ├──train_dataset_view1
+  │   │  │  ├──MASK_NAME: in view1
+  │   │  │  │   └──0000.ome.nii
+  │   │  │  │   └──...
+  │   │  ├──train_dataset_view2
+  │   │  │  ├──MASK_NAME: in view2
+  │   │  │  │   └──0000.ome.nii
+  │   │  │  │   └──...
+  └──3dto2d_mask.py
+  ```
+
+  A sample command to run the python file is:
+
+  ```
+  python 3dto2d_mask.py --file_dir .\mask --save_dir .\mask --type CP --image_shape 256,256,256
+  ```
+
 ###### 2. Build data txt
 
 - Run the python file to build the data txt (for both brain images from view1 and view2)

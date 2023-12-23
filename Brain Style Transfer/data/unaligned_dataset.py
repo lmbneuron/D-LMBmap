@@ -34,6 +34,7 @@ class UnalignedDataset(BaseDataset):
         self.B_size = len(self.B_paths)  # get the size of dataset B
         self.transform_A = get_transform(self.opt)
         self.transform_B = get_transform(self.opt)
+        self.isTrain = opt.isTrain
 
     def __getitem__(self, index):
         """Return a data point and its metadata information.
@@ -70,14 +71,16 @@ class UnalignedDataset(BaseDataset):
         B = B_img.astype(np.float32)
 
         # apply image transformation
-        A = self.transform_A.augment_images(A)
-        B = self.transform_B.augment_images(B)
+        if self.isTrain:
+            A = self.transform_A.augment_images(A)
+            B = self.transform_B.augment_images(B)
 
         # Save the data
         A_ = A * 255
         cv2.imwrite('temp/A.png', A_)
         B_ = B * 255
         cv2.imwrite('temp/B.png', B_)
+
         A = torch.from_numpy(A[np.newaxis, ...])
         B = torch.from_numpy(B[np.newaxis, ...])
 

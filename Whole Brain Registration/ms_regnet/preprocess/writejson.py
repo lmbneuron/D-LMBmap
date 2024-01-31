@@ -15,12 +15,15 @@ import os
 
 random.seed(3)
 
-
-mov_dir = "./data/data_4/moving/"
+# specify your data here
+mov_dir = "../../data/data_4/moving/"
 mov_path_list = [os.path.join(mov_dir, i) for i in os.listdir(mov_dir) if os.path.isdir(os.path.join(mov_dir, i))]
 
-fix_path = "./data/data_4/fix/allen"
-dst = "./data/data_4"  # 指定json文件的输出路径
+# specify the target data here
+fix_path = "../../data/data_4/fix/allen"
+
+# specify the output folder data here
+dst = "../../data/jsons/data_4"
 #
 
 if not os.path.exists(dst):

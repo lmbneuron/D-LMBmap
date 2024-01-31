@@ -10,6 +10,20 @@ D-LMBMap
 **First, please unzip the data.zip. The data.zip contains the data for registration and one saved checkpoint.**
 ```
 unzip data.zip
+put the unzip files under the root file so the fold sturct should go like these:
+Whole Brain Registration
+│   ...
+│   
+└───data
+      │   
+      └───────data
+      |   
+      └───────data_2
+      │   
+      └───────data_4
+      │
+      └───────gt
+|   ...
 ```
 > ### **Training**
 > #### 1/4 training
@@ -148,6 +162,7 @@ unzip data.zip
 >ms_regnet
 >└───preprocess
 >│   │   writejson.py (generate the train.json, test.json and tot.json)
+>│   │   to use your own data, run this script to generate setting files, make sure your data struct is similar to the example data.
 >│   
 >└───tools
 >    │   changeresolution.py (downsample the images in one folder, you can make the data_2 or data_4 by data.)

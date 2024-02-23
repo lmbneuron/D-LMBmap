@@ -1,7 +1,8 @@
 import os
 import numpy as np
 import math
-import tifffile
+# import tifffile
+import cv2
 
 def psnr(img1, img2):
    mse = np.mean((img1/1.0 - img2/1.0) ** 2 )
@@ -31,31 +32,35 @@ def fid(act1, act2):
     return fid
 
 root = 'results/model1/test_latest/images'
-
-dirs = sorted(os.listdir(root))
+dirs = filter(lambda x: os.path.isdir(os.path.join(root, x)), os.listdir(root))
+dirs = sorted(list(dirs))
 
 if __name__ == '__main__':
     for d in dirs:
         tiff = sorted(os.listdir(os.path.join(root, d)))
+        print(tiff)
+
+        s = 0
         l = len(tiff) // 6
         for i in range(l):
-            img1 = tifffile.imread(os.path.join(root, d, tiff[(i-1)+2]))
-            img2 = tifffile.imread(os.path.join(root, d, tiff[(i-1)+1]))
+            img1 = cv2.imread(os.path.join(root, d, tiff[(6*(i-1))+2]), 0)
+            print(os.path.join(root, d, tiff[(6*(i-1))+2]))
+            img2 = cv2.imread(os.path.join(root, d, tiff[(6*(i-1))+1]), 0)
+            print(os.path.join(root, d, tiff[(6*(i-1))+1]))
             # print(d, dirs2[k])
-            s = 0
 
-            for i in range(len(img1)):
-                dmin1 = img1[i].min()
-                dmax1 = img1[i].max()
-                data_img1 = (img1[i] - dmin1) / (dmax1 - dmin1 + 1)
-                dmin2 = img2[i].min()
-                dmax2 = img2[i].max()
-                data_img2 = (img2[i] - dmin2) / (dmax2 - dmin2 + 1)
 
-                # tmp = psnr(data_img1, data_img2)
-                # tmp = ssim(data_img1, data_img2)
-                tmp = fid(data_img1, data_img2)
+            dmin1 = img1.min()
+            dmax1 = img1.max()
+            data_img1 = (img1 - dmin1) / (dmax1 - dmin1 + 1)
+            dmin2 = img2.min()
+            dmax2 = img2.max()
+            data_img2 = (img2 - dmin2) / (dmax2 - dmin2 + 1)
 
-                # print(tmp)
-                s += tmp
-            print(d, '%.5f' % (s / len(img1)))
+            # tmp = psnr(data_img1, data_img2)
+            # tmp = ssim(data_img1, data_img2)
+            tmp = fid(data_img1, data_img2)
+
+            print(tmp)
+            s += tmp
+        print(d, '%.5f' % (s / l))

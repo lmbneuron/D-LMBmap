@@ -33,29 +33,30 @@ Python 3.7.3
 
 - `3dto2d_mask.py` is a tool that can convert a 3D label with the suffix .nii (or .tiff) into a 2D image with suffix .ome.nii
 
-  Before running it, please make sure the directory structure of the mask is as follows:
+  To get 2d mask in `mask_NAME_brain` under `train_dataset_view1` and `train_dataset_view2`, please download 3D mask from [here](https://drive.google.com/file/d/1izj7cyafzgGtg2FPaIMHIf9G6_VQz1Nj/view?usp=sharing). And run `3dto2d_mask.py`  to generate them.
 
+  Before running this script, please make sure the directory structure of the mask is as follows:
+  
   ```
-  ├── mask
-  │   ├──mask_3d
-  │   │  ├──MASK_NAME.nii
-  │   │  ├──...
-  │   ├──mask_2d (Automatic creation)
-  │   │  ├──train_dataset_view1
-  │   │  │  ├──MASK_NAME: in view1
-  │   │  │  │   └──0000.ome.nii
-  │   │  │  │   └──...
-  │   │  ├──train_dataset_view2
-  │   │  │  ├──MASK_NAME: in view2
-  │   │  │  │   └──0000.ome.nii
-  │   │  │  │   └──...
+  ├──mask_3d
+  │  ├──MASK_NAME.nii
+  │  ├──...
+  ├──data (Automatic creation)
+  │  ├──train_dataset_view1
+  │  │  ├──MASK_NAME: in view1
+  │  │  │   └──0000.ome.nii
+  │  │  │   └──...
+  │  ├──train_dataset_view2
+  │  │  ├──MASK_NAME: in view2
+  │  │  │   └──0000.ome.nii
+  │  │  │   └──...
   └──3dto2d_mask.py
   ```
-
+  
   A sample command to run the python file is:
-
+  
   ```
-  python 3dto2d_mask.py --file_dir .\mask --save_dir .\mask --type CP --image_shape 256,256,256
+  python 3dto2d_mask.py --file_dir .\ --file_3d mask_3d --save_dir .\ --file_2d data --type CH --image_shape 512,320,488
   ```
 
 ###### 2. Build data txt

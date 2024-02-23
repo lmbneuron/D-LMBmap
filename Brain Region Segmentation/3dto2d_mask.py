@@ -4,7 +4,7 @@ The directory structure of the file is as follows:
     ├──mask_3d
     │  ├──MASK_NAME.nii
     │  ├──...
-    ├──mask_2d (Automatic creation)
+    ├──data (Automatic creation)
     │  ├──train_dataset_view1
     │  │  ├──MASK_NAME: in view1
     │  │  │   └──0000.ome.nii
@@ -32,7 +32,7 @@ optional arguments:
 
 if you want to change arguments, you can refer to the following demo:
 
->python 3dto2d_mask.py --file_dir .\test\file_dir --save_dir .\test\save_dir --type CP --image_shape 256,256,256
+>python 3dto2d_mask.py --file_dir .\ --file_3d mask_3d --save_dir .\ --file_2d data --type CH --image_shape 512,320,488
 
 """
 
@@ -83,7 +83,7 @@ def get_args():
     parser.add_argument('--file_dir', type=str, default='./', dest='file_dir')
     parser.add_argument('--file_3d', type=str, default='mask_3d', dest='file_3d')
     parser.add_argument('--save_dir', type=str, default='./', dest='save_dir')
-    parser.add_argument('--file_2d', type=str, default='mask_2d', dest='file_2d')
+    parser.add_argument('--file_2d', type=str, default='data', dest='file_2d')
     parser.add_argument('--type', type=str, default='CH', dest='type')
     parser.add_argument('--image_shape', type=str, default='512,320,448', dest='image_shape')
     return parser.parse_args()

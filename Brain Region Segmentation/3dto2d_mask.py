@@ -59,15 +59,16 @@ def save_file(img, save_path, i):
 
 def convert(imgs, image_shape, save_path, view_type=1):
     nii_new = []
-    [d1, d2, d3] = [int(i) for i in image_shape.split(',')]  # 448, 320
+    [d1, d2, d3] = [int(i) for i in image_shape.split(',')]  # 448, 320 512 320 448
 
     for i in range(imgs.shape[view_type - 1]):
         if view_type == 2:
             img = imgs[:, i, :]
-            resize = (d1, d2)  # 512 448
+            img = np.rot90(img, 1)
+            resize = (d1, d3)  # 512 448
         elif view_type == 3:
             img = imgs[:, :, i]
-            resize = (d1, d3)  # 512 320
+            resize = (d1, d2)  # 512 320
         else:  # view_type == 1
             img = imgs[i, :, :]
             resize = (d3, d2)  # 448, 320
@@ -93,6 +94,7 @@ if __name__ == '__main__':
     args = get_args()
 
     image_shape = args.image_shape
+    print('image_shape', image_shape)
     file_dir = os.path.join(args.file_dir, args.file_3d)
     save_dir = os.path.join(args.save_dir, args.file_2d)
     if not os.path.exists(save_dir):
